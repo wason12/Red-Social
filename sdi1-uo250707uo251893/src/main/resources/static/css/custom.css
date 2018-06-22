@@ -1,0 +1,41 @@
+@CHARSET "ISO-8859-1";
+
+/* Sticky footer styles-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+body > footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #101010;
+  text-align:center;
+  line-height:60px
+}
+
+#loginFooter {
+  position: absolute;
+  bottom: 50px;
+  text-align:center;
+  line-height:60px
+}
+
+#userAuthenticatedAs{
+	text-align:center;
+}
+
+/* Sticky footer styles-------------------------------------------------- */
+
+/* Login styles---------------------------------------------------------- */
+#loginError{
+	text-align: center;
+}
+/* Login styles---------------------------------------------------------- */

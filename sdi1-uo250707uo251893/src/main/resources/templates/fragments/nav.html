@@ -1,0 +1,112 @@
+<!-- nav.html -->
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span>
+			</button>
+			<img sec:authorize="hasRole('ROLE_PUBLIC')" src="/img/user-48.png" alt="logo" />
+			<img sec:authorize="hasRole('ROLE_ADMIN')" src="/img/admin-48.png" alt="logo" />
+		</div>
+		
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
+				<li><a id="aHome" href="/" th:text="#{Nav.home}">Home</a></li>
+				
+				<li id= "users-menu" class="dropdown">
+ 					<a id="aDropdownUsersMenu" class="dropdown-toggle" data-toggle="dropdown" 
+ 						href="#" th:text="#{Nav.users}">
+ 						Usuarios <span class="caret"></span>
+ 					</a>
+
+ 					<ul class="dropdown-menu">
+ 						<li>
+ 							<a id="aUserList" href="/user/list" th:text="#{Nav.users.see.all}">Ver Todos</a>
+ 						</li>
+ 						<li sec:authorize="hasRole('ROLE_PUBLIC')">
+ 							<a id="aUserFriendList" href="/user/friends" th:text="#{Nav.users.see.friends}">Ver Amigos</a>
+ 						</li>
+ 						<li sec:authorize="hasRole('ROLE_PUBLIC')">
+ 							<a id="aUserFriendRequestList" href="/user/invitations" 
+ 								th:text="#{Nav.users.see.friendRequests}">Ver Solicitudes de Amistad</a>
+ 						</li>
+ 					</ul>
+ 				</li>
+				
+				<li id= "posts-menu" class="dropdown" sec:authorize="hasRole('ROLE_PUBLIC')">
+ 					<a id="aDropdownPostsMenu" class="dropdown-toggle" data-toggle="dropdown" 
+ 						href="#" th:text="#{Nav.posts}">
+ 						Publicaciones <span class="caret"></span>
+ 					</a>
+	 				<ul class="dropdown-menu">
+		 				<li>
+		 					<a id="aPostAdd" href="/post/add" th:text="#{Nav.posts.add}">Nueva publicación</a>
+		 				</li>
+		 				<li>
+		 					<a id="aPostList" href="/post/list" th:text="#{Nav.posts.see.mine}">Ver mis publicaciones</a>
+		 				</li>
+	 				</ul>
+ 				</li>
+ 				
+ 				<li sec:authorize="hasRole('ROLE_ADMIN')" >
+		            <a id="aAdminRestart" href="/admin/restart" th:text="#{Nav.database.restart}">
+                         Reiniciar BD
+                     </a>
+		         </li>
+ 				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a id="btnLanguage" href="#" class="dropdown-toggle" 
+						data-toggle="dropdown" role="button" aria-haspopup="true" 
+						aria-expanded="false"> 
+						<span th:text="#{language.change}"></span> 
+						<span class="caret"></span>
+					</a>
+					<ul id="languageDropdownMenuButton" class="dropdown-menu">
+						<li>
+							<a id="btnEnglish" value="EN"> 
+							<img th:src="@{/img/if_uk_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> 
+								<span th:text="#{language.en}">Inglés</span>
+							</a>
+						</li>
+						<li>
+							<a id="btnSpanish" value="ES"> 
+								<img th:src="@{/img/if_spain_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> 
+								<span th:text="#{language.es}">Español</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<li sec:authorize="!isAuthenticated()">
+					<a id="aSignup" href="/signup" th:text="#{signup.message}"> 
+						<span class="glyphicon glyphicon-user"></span> 
+						Registrate
+					</a>
+				</li>
+				<li sec:authorize="!isAuthenticated()">
+					<a id="aLogin" href="/login" th:text="#{login.message}"> 
+						<span class="glyphicon glyphicon-log-in"></span> 
+						Identifícate
+					</a>
+				</li>
+				<li sec:authorize="isAuthenticated()">
+					<a id="aLogout" href="/logout" th:text="#{logout.message}"> 
+						<span class="glyphicon glyphicon-log-out"></span> 
+						Desconectarse
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+
+</nav>
