@@ -37,7 +37,7 @@ public class InvitationService {
 	public void acceptInvitation(String email, Long invitation_id) {
 		Invitation invitation = invitationRepository.findOne(invitation_id);
 		
-		if(invitation != null && invitation.getReceiver().getEmail() == email) {
+		if(invitation != null && invitation.getReceiver().getEmail().equals(email)) {
 			invitation.accept();
 			invitationRepository.delete(invitation);
 		}
